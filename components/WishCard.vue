@@ -184,7 +184,7 @@ export default {
     padding-left: 12px;
     padding-right: 12px;
     height: 980px;
-    padding: 50px 0;
+    padding: 50px 15px;
 
     .wedding-card__wish-form,
     .wedding-card__image {

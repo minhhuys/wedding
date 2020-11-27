@@ -147,7 +147,7 @@ export default {
     },
   },
   mounted() {
-    this.isActiveTabConent = "Saigon";
+    this.isActiveTabConent = "Hanoi";
   },
 };
 </script>
@@ -201,7 +201,10 @@ export default {
 
     .wedding-intro {
       position: relative;
-      height: 88px;
+
+      img {
+        display: block;
+      }
 
       .flower {
         position: absolute;
@@ -312,9 +315,10 @@ export default {
   .wedding {
     .wedding-main {
       .wedding-intro {
-        height: 48px;
         img {
-          width: 100%;
+          max-width: 100%;
+          height: auto;
+          display: block;
         }
       }
       .wedding-title {
@@ -343,6 +347,19 @@ export default {
       .wedding-information {
         padding: 50px 12px;
         background-size: contain;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 350px) {
+  .wedding-images {
+    .center-image {
+      min-width: 310px !important;
+      width: 100%;
+
+      img.main-pic {
+        max-width: 310px !important;
       }
     }
   }

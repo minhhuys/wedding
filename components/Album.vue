@@ -3,33 +3,41 @@
     <h3>Tổng hợp ảnh cưới</h3>
 
     <div class="wedding-images">
-      <div>
-        <img
-          src="@/assets/images/baotran4.png"
+      <div class="wedding-image">
+        <img class="main-img" src="@/assets/images/baotran4.png" alt="" />
+        <div
+          class="view-image"
           @click="openModal(require(`~/assets/images/baotran4.png`))"
-          alt=""
-        />
+        >
+          <img src="@/assets/images/view.png" alt="" />
+        </div>
       </div>
-      <div>
-        <img
-          src="@/assets/images/baotran2.png"
+      <div class="wedding-image">
+        <img src="@/assets/images/baotran2.png" class="main-img" alt="" />
+        <div
+          class="view-image"
           @click="openModal(require(`~/assets/images/baotran2.png`))"
-          alt=""
-        />
+        >
+          <img src="@/assets/images/view.png" alt="" />
+        </div>
       </div>
-      <div>
-        <img
-          src="@/assets/images/baotran3.png"
+      <div class="wedding-image">
+        <img src="@/assets/images/baotran3.png" class="main-img" alt="" />
+        <div
+          class="view-image"
           @click="openModal(require(`~/assets/images/baotran3.png`))"
-          alt=""
-        />
+        >
+          <img src="@/assets/images/view.png" alt="" />
+        </div>
       </div>
-      <div>
-        <img
-          src="@/assets/images/baotran4.png"
+      <div class="wedding-image">
+        <img src="@/assets/images/baotran4.png" class="main-img" alt="" />
+        <div
+          class="view-image"
           @click="openModal(require(`~/assets/images/baotran4.png`))"
-          alt=""
-        />
+        >
+          <img src="@/assets/images/view.png" alt="" />
+        </div>
       </div>
     </div>
 
@@ -54,7 +62,6 @@ export default {
   },
   methods: {
     openModal(src) {
-      console.log("src", src);
       this.showModal = true;
       this.imageSrc = src;
     },
@@ -81,10 +88,36 @@ export default {
     grid-template-columns: auto auto;
     grid-gap: 25px;
 
-    div {
-      img {
-        width: 100%;
+    .wedding-image {
+      position: relative;
+      overflow: hidden;
+
+      &:hover {
+        .view-image {
+          bottom: 0;
+        }
+      }
+      .main-img {
+        max-width: 100%;
+        height: auto;
+        display: block;
         cursor: pointer;
+      }
+      .view-image {
+        transition: all 0.3s;
+        width: 100%;
+        height: 100%;
+        bottom: -100%;
+        background: rgba(192, 105, 10, 0.4);
+        position: absolute;
+        cursor: pointer;
+
+        img {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+        }
       }
     }
   }
@@ -116,7 +149,6 @@ export default {
   width: 100%; /* Full width */
   height: 100%; /* Full height */
   overflow: auto; /* Enable scroll if needed */
-  background-color: rgb(0, 0, 0); /* Fallback color */
   background-color: rgba(0, 0, 0, 0.9); /* Black w/ opacity */
   display: flex;
   align-items: center;
@@ -183,7 +215,7 @@ export default {
 }
 @media screen and (max-width: 480px) {
   .wedding-album {
-    padding: 15px;
+    padding: 50px 15px;
     .wedding-images {
       grid-gap: 15px;
     }
@@ -193,6 +225,16 @@ export default {
     div {
       button {
         width: 350px;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 350px) {
+  .wedding-album {
+    div {
+      button {
+        width: 290px;
       }
     }
   }
