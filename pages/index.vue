@@ -205,7 +205,7 @@ export default {
 
       .flower {
         position: absolute;
-        top: 100%;
+        top: 125%;
         transform: translate(-50%, -50%);
       }
       .flower-left {

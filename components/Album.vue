@@ -5,25 +5,29 @@
     <div class="wedding-images">
       <div>
         <img
-          src="https://images.pexels.com/photos/2253870/pexels-photo-2253870.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
+          src="@/assets/images/baotran4.png"
+          @click="openModal(require(`~/assets/images/baotran4.png`))"
           alt=""
         />
       </div>
       <div>
         <img
-          src="https://images.pexels.com/photos/2253870/pexels-photo-2253870.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
+          src="@/assets/images/baotran2.png"
+          @click="openModal(require(`~/assets/images/baotran2.png`))"
           alt=""
         />
       </div>
       <div>
         <img
-          src="https://images.pexels.com/photos/2253870/pexels-photo-2253870.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
+          src="@/assets/images/baotran3.png"
+          @click="openModal(require(`~/assets/images/baotran3.png`))"
           alt=""
         />
       </div>
       <div>
         <img
-          src="https://images.pexels.com/photos/2253870/pexels-photo-2253870.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
+          src="@/assets/images/baotran4.png"
+          @click="openModal(require(`~/assets/images/baotran4.png`))"
           alt=""
         />
       </div>
@@ -32,11 +36,33 @@
     <div>
       <button>Xem tất cả ảnh</button>
     </div>
+
+    <div class="modal-image" v-if="showModal">
+      <span class="close" @click="close">&times;</span>
+      <img ref="modalImage" :src="imageSrc" class="modal-content" />
+    </div>
   </div>
 </template>
 
 <script>
-export default {};
+export default {
+  data() {
+    return {
+      showModal: false,
+      imageSrc: null,
+    };
+  },
+  methods: {
+    openModal(src) {
+      console.log("src", src);
+      this.showModal = true;
+      this.imageSrc = src;
+    },
+    close() {
+      this.showModal = false;
+    },
+  },
+};
 </script>
 
 <style lang="scss">
@@ -78,6 +104,96 @@ export default {};
       font-weight: 600;
       outline: none;
       cursor: pointer;
+    }
+  }
+}
+
+.modal-image {
+  position: fixed;
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0, 0, 0); /* Fallback color */
+  background-color: rgba(0, 0, 0, 0.9); /* Black w/ opacity */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Modal Content (image) */
+.modal-content {
+  margin: auto;
+  display: block;
+  width: 80%;
+  max-width: 700px;
+}
+
+/* Add Animation */
+.modal-content {
+  -webkit-animation-name: zoom;
+  -webkit-animation-duration: 0.6s;
+  animation-name: zoom;
+  animation-duration: 0.6s;
+}
+
+@-webkit-keyframes zoom {
+  from {
+    -webkit-transform: scale(0);
+  }
+  to {
+    -webkit-transform: scale(1);
+  }
+}
+
+@keyframes zoom {
+  from {
+    transform: scale(0);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
+/* The Close Button */
+.close {
+  position: absolute;
+  top: 15px;
+  right: 35px;
+  color: #f1f1f1;
+  font-size: 40px;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+.close:hover,
+.close:focus {
+  color: #bbb;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* 100% Image Width on Smaller Screens */
+@media only screen and (max-width: 700px) {
+  .modal-content {
+    width: 100%;
+  }
+}
+@media screen and (max-width: 480px) {
+  .wedding-album {
+    padding: 15px;
+    .wedding-images {
+      grid-gap: 15px;
+    }
+    h3 {
+      font-size: 30px;
+    }
+    div {
+      button {
+        width: 350px;
+      }
     }
   }
 }

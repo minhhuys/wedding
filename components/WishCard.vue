@@ -1,6 +1,8 @@
 <template>
   <div class="wedding-card__wishes">
-    <div class="wedding-card__image"></div>
+    <div class="wedding-card__image">
+      <img src="@/assets/images/baotran-rotate.png" alt="" />
+    </div>
     <div class="wedding-card__wish-form">
       <div class="wish-form">
         <h3>Gửi lời chúc</h3>
@@ -102,6 +104,13 @@ export default {
     width: 50%;
   }
 
+  .wedding-card__image {
+    text-align: center;
+    img {
+      max-width: 100%;
+    }
+  }
+
   .wish-form {
     max-width: 500px;
     background-color: white;
@@ -174,6 +183,8 @@ export default {
     display: inline-block;
     padding-left: 12px;
     padding-right: 12px;
+    height: 980px;
+    padding: 50px 0;
 
     .wedding-card__wish-form,
     .wedding-card__image {
