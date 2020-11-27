@@ -6,24 +6,20 @@
           v-if="!useMedia_isMobile"
           class="flower-left flower"
           src="@/assets/images/flower-left.png"
-          alt=""
+          alt
         />
         <img
           v-if="!useMedia_isMobile"
           class="flower-right flower"
           src="@/assets/images/flower-right.png"
-          alt=""
+          alt
         />
 
         <div class="half-circle">
-          <img src="@/assets/images/top-flower.png" alt="" />
+          <img src="@/assets/images/top-flower.png" alt />
         </div>
-        <img
-          src="@/assets/images/ellipsis.png"
-          alt=""
-          v-if="!useMedia_isMobile"
-        />
-        <img src="@/assets/images/ellipse-mobile.png" alt="" v-else />
+        <img src="@/assets/images/ellipsis.png" alt v-if="!useMedia_isMobile" />
+        <img src="@/assets/images/ellipse-mobile.png" alt v-else />
         <div class="bride-and-groom">
           <p>Hoài Bảo</p>
           <div>
@@ -38,14 +34,7 @@
       </div>
 
       <div class="wedding-images has-text-centered">
-        <div
-          class="ahamove aos-init aos-animate"
-          data-aos="fade-right"
-          data-aos-duration="1000"
-          data-aos-offset="200"
-          data-aos-delay="50"
-          v-if="!useMedia_isMobile"
-        >
+        <div class="ahamove" v-if="!useMedia_isMobile">
           <img src="@/assets/images/aha.png" alt width="200" height="200" />
           <p>Hoài Bảo</p>
         </div>
@@ -55,14 +44,7 @@
           <img class="flower-pic" src="@/assets/images/flower-center.png" alt />
         </div>
 
-        <div
-          class="be aos-init aos-animate"
-          data-aos="fade-left"
-          data-aos-duration="1000"
-          data-aos-offset="200"
-          data-aos-delay="50"
-          v-if="!useMedia_isMobile"
-        >
+        <div class="be" v-if="!useMedia_isMobile">
           <img src="@/assets/images/be.png" width="200" height="200" alt />
           <p>Kiều Trinh</p>
         </div>
@@ -75,16 +57,12 @@
               class="tablinks"
               :class="{ active: isActiveTabConent === 'Hanoi' }"
               @click="selectTab('Hanoi')"
-            >
-              Hà Nội
-            </p>
+            >Hà Nội</p>
             <p
               class="tablinks"
               :class="{ active: isActiveTabConent === 'Saigon' }"
               @click="selectTab('Saigon')"
-            >
-              Sài Gòn
-            </p>
+            >Sài Gòn</p>
           </div>
           <div class="tabcontent">
             <CardInfo

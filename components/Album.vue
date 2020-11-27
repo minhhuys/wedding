@@ -4,39 +4,27 @@
 
     <div class="wedding-images">
       <div class="wedding-image">
-        <img class="main-img" src="@/assets/images/baotran4.png" alt="" />
-        <div
-          class="view-image"
-          @click="openModal(require(`~/assets/images/baotran4.png`))"
-        >
-          <img src="@/assets/images/view.png" alt="" />
+        <img class="main-img" src="@/assets/images/baotran4.png" alt />
+        <div class="view-image" @click="openModal(require(`~/assets/images/baotran4.png`))">
+          <img src="@/assets/images/view.png" alt />
         </div>
       </div>
       <div class="wedding-image">
-        <img src="@/assets/images/baotran2.png" class="main-img" alt="" />
-        <div
-          class="view-image"
-          @click="openModal(require(`~/assets/images/baotran2.png`))"
-        >
-          <img src="@/assets/images/view.png" alt="" />
+        <img src="@/assets/images/baotran2.png" class="main-img" alt />
+        <div class="view-image" @click="openModal(require(`~/assets/images/baotran2.png`))">
+          <img src="@/assets/images/view.png" alt />
         </div>
       </div>
       <div class="wedding-image">
-        <img src="@/assets/images/baotran3.png" class="main-img" alt="" />
-        <div
-          class="view-image"
-          @click="openModal(require(`~/assets/images/baotran3.png`))"
-        >
-          <img src="@/assets/images/view.png" alt="" />
+        <img src="@/assets/images/baotran3.png" class="main-img" alt />
+        <div class="view-image" @click="openModal(require(`~/assets/images/baotran3.png`))">
+          <img src="@/assets/images/view.png" alt />
         </div>
       </div>
       <div class="wedding-image">
-        <img src="@/assets/images/baotran4.png" class="main-img" alt="" />
-        <div
-          class="view-image"
-          @click="openModal(require(`~/assets/images/baotran4.png`))"
-        >
-          <img src="@/assets/images/view.png" alt="" />
+        <img src="@/assets/images/baotran4.png" class="main-img" alt />
+        <div class="view-image" @click="openModal(require(`~/assets/images/baotran4.png`))">
+          <img src="@/assets/images/view.png" alt />
         </div>
       </div>
     </div>
@@ -98,7 +86,7 @@ export default {
         }
       }
       .main-img {
-        max-width: 100%;
+        width: 100%;
         height: auto;
         display: block;
         cursor: pointer;
