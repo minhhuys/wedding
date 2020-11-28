@@ -337,4 +337,19 @@ export default {
     }
   }
 }
+
+@media screen and (max-width: 480px) {
+  .wedding-info {
+    .wedding-info__content {
+      .wedding-thanksful {
+        .add-to-calendar {
+          p {
+            font-size: 12px;
+          }
+          padding: 0 10px;
+        }
+      }
+    }
+  }
+}
 </style>
