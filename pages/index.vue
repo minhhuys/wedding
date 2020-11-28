@@ -68,6 +68,7 @@
             <CardInfo
               :key="isActiveTabConent"
               :info="isActiveTabConent === 'Hanoi' ? hanoi : saigon"
+              @addToCalendar="addToCalendar"
             />
           </div>
         </div>
@@ -123,6 +124,16 @@ export default {
         this.isActiveTabConent = "Saigon";
       }
     },
+
+    addToCalendar(location) {
+      let url = ''
+      if(location === 'Hanoi') {
+        url = `http://www.google.com/calendar/event?action=TEMPLATE&dates=20201207T040000Z%2F20201207T060000Z&text=Bao%20Trinh%20's%20wedding%20invitation&location=V%E1%BA%A0N%20HOA%20PREMIUM%20-%20T%E1%BA%A7ng%204%20S%E1%BB%91%202%20Ch%C6%B0%C6%A1ng%20D%C6%B0%C6%A1ng%20%C4%90%E1%BB%99%2C%20Ho%C3%A0n%20Ki%E1%BA%BFm%2C%20H%C3%A0%20N%E1%BB%99i&details=Tr%C3%A2n%20tr%E1%BB%8Dng%20m%E1%BB%9Di%20b%E1%BA%A1n%20t%E1%BB%9Bi%20d%E1%BB%B1%20%C4%91%C3%A1m%20c%C6%B0%E1%BB%9Bi%20Ho%C3%A0i%20B%E1%BA%A3o%20v%C3%A0%20Vi%E1%BB%87t%20Trinh`
+      } else {
+        url = `http://www.google.com/calendar/event?action=TEMPLATE&dates=20201211T113000Z%2F20201211T133000Z&text=Bao%20Trinh%20's%20wedding%20invitation&location=THE%20ADORA%20DYNASTY%20s%E1%BB%91%201A%20T%C3%B4n%20Th%E1%BA%A5t%20T%C3%B9ng%2C%20qu%E1%BA%ADn%201&details=Tr%C3%A2n%20tr%E1%BB%8Dng%20m%E1%BB%9Di%20b%E1%BA%A1n%20t%E1%BB%9Bi%20d%E1%BB%B1%20%C4%91%C3%A1m%20c%C6%B0%E1%BB%9Bi%20Ho%C3%A0i%20B%E1%BA%A3o%20v%C3%A0%20Vi%E1%BB%87t%20Trinh`
+      }
+      return window.open(url, "_blank")
+    }
   },
   mounted() {
     this.isActiveTabConent = "Hanoi";

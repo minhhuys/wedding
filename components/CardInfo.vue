@@ -2,12 +2,12 @@
   <div class="wedding-info has-text-centered">
     <div class="wedding-info__content">
       <p class="wedding-info__title">Hôn lẽ sẽ được cử hành tại tư gia</p>
-      <img src="@/assets/images/crow.png" alt="" />
+      <img src="@/assets/images/crow.png" alt />
 
       <h3>Trung tâm hội nghị tiệc cưới</h3>
       <p class="wedding-info__address">{{ info.location }}</p>
       <p class="wedding-info__address-detail" v-html="info.detail"></p>
-      <img class="crow-2" src="@/assets/images/crow2.png" alt="" />
+      <img class="crow-2" src="@/assets/images/crow2.png" alt />
       <br />
       <p class="wedding-info__time">{{ info.time }}</p>
       <p class="wedding-info__date">{{ info.date }}</p>
@@ -32,25 +32,50 @@
         </div>
       </div>
 
-      <span class="wedding-appriciate"
-        >Sự hiện diện của Quý khách <br />
-        là niềm vinh hạnh cho gia đình chúng tôi</span
-      >
+      <span class="wedding-appriciate">
+        Sự hiện diện của Quý khách
+        <br />là niềm vinh hạnh cho gia đình chúng tôi
+      </span>
 
-      <div class="wedding-participate">
+      <div class="wedding-participate" v-if="!isJoined">
         <input
+          v-model="name"
           type="text"
           class="participant-name"
           placeholder="Tên quý khách"
+          @input="handleChangeName"
         />
 
-        <button>Tham dự</button>
+        <select id="location" name="location" v-model="location" @input="handleChangeLocation">
+          <option value disabled selected hidden>Chọn địa điểm tham dự...</option>
+          <option value="Hanoi">Hà Nội</option>
+          <option value="Saigon">Sài Gòn</option>
+        </select>
+
+        <p class="error" v-if="isError">Vui lòng nhập đầy đủ thông tin trước khi xác nhận!</p>
+
+        <button @click="join">Tham dự</button>
+      </div>
+
+      <div class="wedding-thanksful" v-else>
+        <div class="thanksful-title" id="confeti">
+          <img src="@/assets/images/cracker.png" alt />
+          <p>Cảm ơn bạn đến và chung vui</p>
+        </div>
+        <div class="add-to-calendar">
+          <p>Thêm sự kiện này vào calendar của bạn</p>
+          <button @click="addToCalendar">
+            <img src="@/assets/images/calendar.png" alt />
+            <p>Thêm ngay</p>
+          </button>
+        </div>
       </div>
     </div>
   </div>
 </template>
 
 <script>
+const IS_JOINED = 'is_joined'
 export default {
   props: {
     info: {
@@ -64,9 +89,36 @@ export default {
       minutes: 0,
       seconds: 0,
       timer: null,
+      location: '',
+      name : null,
+      isError: false,
+      isJoined: false
     };
   },
   methods: {
+    setCookie(cname, cvalue, exdays) {
+      var d = new Date();
+      d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+      var expires = "expires="+d.toUTCString();
+      document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+    },
+
+    getCookie(cname) {
+      var name = cname + "=";
+      var decodedCookie = decodeURIComponent(document.cookie);
+      var ca = decodedCookie.split(';');
+      for(var i = 0; i <ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0) == ' ') {
+          c = c.substring(1);
+        }
+        if (c.indexOf(name) == 0) {
+          return c.substring(name.length, c.length);
+        }
+      }
+      return "";
+    },  
+
     estimateTime() {
       const countDownDate = new Date(this.info.timeToCountDown).getTime();
       this.timer = setInterval(() => {
@@ -80,9 +132,37 @@ export default {
         this.seconds = Math.floor((distance % (1000 * 60)) / 1000);
       }, 1000);
     },
+
+    handleChangeLocation($e) {
+      this.isError = false
+      this.location = $e.target.value
+    },
+
+    handleChangeName($e) {
+      this.isError = false
+      this.name = $e.target.value
+    },
+
+    join() {
+      if(!this.name && !this.location) {
+        return this.isError = true
+      }
+      this.setCookie(IS_JOINED, true, 30)
+      this.isJoined = true
+    },
+
+    addToCalendar() {
+      this.$emit('addToCalendar', this.location)
+    }
+
   },
   mounted() {
     this.estimateTime();
+
+    let cookie = this.getCookie(IS_JOINED)
+    if(cookie) {
+      this.isJoined = true
+    }
   },
 
   beforeDestroy() {
@@ -147,7 +227,19 @@ export default {
     .wedding-participate {
       margin-top: 20px;
 
+      .error {
+        color: red;
+        font-size: 12px;
+        text-align: left;
+        margin-top: 10px;
+      }
+
       input {
+        margin-bottom: 16px;
+      }
+
+      input,
+      select {
         width: 100%;
         height: 56px;
         background-color: #f0f1f1;
@@ -157,6 +249,13 @@ export default {
         border: none;
         outline: none;
         padding: 0 15px;
+      }
+
+      select {
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        text-indent: 1px;
+        text-overflow: "";
       }
 
       button {
@@ -170,6 +269,57 @@ export default {
         outline: none;
         color: white;
         font-weight: bold;
+        cursor: pointer;
+      }
+    }
+
+    .wedding-thanksful {
+      margin: 20px 0;
+      max-width: 430px;
+      border: 1px solid #c0690a;
+      border-radius: 2px;
+
+      .thanksful-title {
+        height: 65px;
+        line-height: 65px;
+        background: #fbf9ef;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        img {
+          margin-right: 8px;
+        }
+
+        p {
+          font-weight: 600;
+        }
+      }
+      .add-to-calendar {
+        display: flex;
+        margin: 16px 0;
+        padding: 0 16px;
+
+        p {
+          font-size: 14px;
+        }
+        p,
+        button {
+          width: 50%;
+        }
+
+        button {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          background: #dd902c;
+          border: none;
+          outline: none;
+          height: 40px;
+          color: white;
+          font-weight: 600;
+          border-radius: 2px;
+        }
       }
     }
   }
