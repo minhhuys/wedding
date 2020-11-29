@@ -39,7 +39,9 @@
           @input="onChangeMessage"
         ></textarea>
 
-        <p v-if="isError" class="note">Vui lòng điền đủ thông tin để nhận quà bất ngờ từ chúng tôi</p>
+        <p v-if="isError" class="note">
+          Vui lòng điền đủ thông tin để nhận quà bất ngờ từ chúng tôi
+        </p>
 
         <button @click="submit">Gửi ngay</button>
       </div>
@@ -66,12 +68,22 @@
             <p>Ahamove</p>
             <div class="google-play">
               <a href="#">
-                <img src="@/assets/images/gg-play.png" width="135" height="40" alt />
+                <img
+                  src="@/assets/images/gg-play.png"
+                  width="135"
+                  height="40"
+                  alt
+                />
               </a>
             </div>
             <div class="appstore">
               <a href="#">
-                <img src="@/assets/images/appstore.png" width="135" height="40" alt />
+                <img
+                  src="@/assets/images/appstore.png"
+                  width="135"
+                  height="40"
+                  alt
+                />
               </a>
             </div>
           </div>
@@ -80,12 +92,22 @@
 
             <div class="google-play">
               <a href="#">
-                <img src="@/assets/images/gg-play.png" width="135" height="40" alt />
+                <img
+                  src="@/assets/images/gg-play.png"
+                  width="135"
+                  height="40"
+                  alt
+                />
               </a>
             </div>
             <div class="appstore">
               <a href="#">
-                <img src="@/assets/images/appstore.png" width="135" height="40" alt />
+                <img
+                  src="@/assets/images/appstore.png"
+                  width="135"
+                  height="40"
+                  alt
+                />
               </a>
             </div>
           </div>
@@ -96,7 +118,7 @@
 </template>
 
 <script>
-const TOKEN_CNAME = "is_wished"
+const TOKEN_CNAME = "is_wished";
 
 export default {
   data() {
@@ -105,24 +127,24 @@ export default {
       phone: "",
       message: "",
       isError: false,
-      isMessaged: false
+      isMessaged: false,
     };
   },
   methods: {
     setCookie(cname, cvalue, exdays) {
       var d = new Date();
-      d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
-      var expires = "expires="+d.toUTCString();
+      d.setTime(d.getTime() + exdays * 24 * 60 * 60 * 1000);
+      var expires = "expires=" + d.toUTCString();
       document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
     },
 
     getCookie(cname) {
       var name = cname + "=";
       var decodedCookie = decodeURIComponent(document.cookie);
-      var ca = decodedCookie.split(';');
-      for(var i = 0; i <ca.length; i++) {
+      var ca = decodedCookie.split(";");
+      for (var i = 0; i < ca.length; i++) {
         var c = ca[i];
-        while (c.charAt(0) == ' ') {
+        while (c.charAt(0) == " ") {
           c = c.substring(1);
         }
         if (c.indexOf(name) == 0) {
@@ -130,35 +152,39 @@ export default {
         }
       }
       return "";
-    },  
+    },
 
-    submit() {
+    async submit() {
       if (!this.name || !this.phone || !this.message) {
         return (this.isError = true);
       }
 
-      this.setCookie(TOKEN_CNAME, true, 30)
-      this.isMessaged = true
+      // this.setCookie(TOKEN_CNAME, true, 30)
+      // this.isMessaged = true
 
-      // let data = {
-      //   name: this.name,
-      //   phone: this.phone,
-      //   message: this.message,
-      // };
+      let data = {
+        name: this.name,
+        phone: this.phone,
+        message: this.message,
+      };
 
-      // let response = await fetch(
-      //   "https://apistg.ahamove.com/web/wedding/message",
-      //   {
-      //     method: "POST",
-      //     headers: {
-      //       "Content-Type": "application/json",
-      //     },
-      //     data: JSON.stringify(data),
-      //   }
-      // );
+      let response = await fetch(
+        "https://apistg.ahamove.com/web/wedding/message",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(data),
+        }
+      );
 
-      // let result = await response.json();
-      // console.log("result", result);
+      let result = await response.json();
+
+      if (result.success) {
+        this.setCookie(TOKEN_CNAME, true, 30);
+        this.isMessaged = true;
+      }
     },
     onChangeName($e) {
       this.isError = false;
@@ -175,11 +201,11 @@ export default {
   },
 
   mounted() {
-    let cookie = this.getCookie(TOKEN_CNAME)
-    if(cookie) {
-      this.isMessaged = true
+    let cookie = this.getCookie(TOKEN_CNAME);
+    if (cookie) {
+      this.isMessaged = true;
     }
-  }
+  },
 };
 </script>
 

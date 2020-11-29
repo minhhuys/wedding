@@ -1,7 +1,7 @@
 <template>
   <div class="wedding-info has-text-centered">
     <div class="wedding-info__content">
-      <p class="wedding-info__title">Hôn lẽ sẽ được cử hành tại tư gia</p>
+      <p class="wedding-info__title">Hôn lẽ sẽ được cử hành tại</p>
       <img src="@/assets/images/crow.png" alt />
 
       <h3>Trung tâm hội nghị tiệc cưới</h3>
@@ -46,13 +46,22 @@
           @input="handleChangeName"
         />
 
-        <select id="location" name="location" v-model="location" @input="handleChangeLocation">
-          <option value disabled selected hidden>Chọn địa điểm tham dự...</option>
+        <select
+          id="location"
+          name="location"
+          v-model="location"
+          @input="handleChangeLocation"
+        >
+          <option value disabled selected hidden>
+            Chọn địa điểm tham dự...
+          </option>
           <option value="Hanoi">Hà Nội</option>
           <option value="Saigon">Sài Gòn</option>
         </select>
 
-        <p class="error" v-if="isError">Vui lòng nhập đầy đủ thông tin trước khi xác nhận!</p>
+        <p class="error" v-if="isError">
+          Vui lòng nhập đầy đủ thông tin trước khi xác nhận!
+        </p>
 
         <button @click="join">Tham dự</button>
       </div>
@@ -75,7 +84,7 @@
 </template>
 
 <script>
-const IS_JOINED = 'is_joined'
+const IS_JOINED = "is_joined";
 export default {
   props: {
     info: {
@@ -89,27 +98,27 @@ export default {
       minutes: 0,
       seconds: 0,
       timer: null,
-      location: '',
-      name : null,
+      location: "",
+      name: null,
       isError: false,
-      isJoined: false
+      isJoined: false,
     };
   },
   methods: {
     setCookie(cname, cvalue, exdays) {
       var d = new Date();
-      d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
-      var expires = "expires="+d.toUTCString();
+      d.setTime(d.getTime() + exdays * 24 * 60 * 60 * 1000);
+      var expires = "expires=" + d.toUTCString();
       document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
     },
 
     getCookie(cname) {
       var name = cname + "=";
       var decodedCookie = decodeURIComponent(document.cookie);
-      var ca = decodedCookie.split(';');
-      for(var i = 0; i <ca.length; i++) {
+      var ca = decodedCookie.split(";");
+      for (var i = 0; i < ca.length; i++) {
         var c = ca[i];
-        while (c.charAt(0) == ' ') {
+        while (c.charAt(0) == " ") {
           c = c.substring(1);
         }
         if (c.indexOf(name) == 0) {
@@ -117,7 +126,7 @@ export default {
         }
       }
       return "";
-    },  
+    },
 
     estimateTime() {
       const countDownDate = new Date(this.info.timeToCountDown).getTime();
@@ -134,34 +143,33 @@ export default {
     },
 
     handleChangeLocation($e) {
-      this.isError = false
-      this.location = $e.target.value
+      this.isError = false;
+      this.location = $e.target.value;
     },
 
     handleChangeName($e) {
-      this.isError = false
-      this.name = $e.target.value
+      this.isError = false;
+      this.name = $e.target.value;
     },
 
     join() {
-      if(!this.name && !this.location) {
-        return this.isError = true
+      if (!this.name && !this.location) {
+        return (this.isError = true);
       }
-      this.setCookie(IS_JOINED, true, 30)
-      this.isJoined = true
+      this.setCookie(IS_JOINED, true, 30);
+      this.isJoined = true;
     },
 
     addToCalendar() {
-      this.$emit('addToCalendar', this.location)
-    }
-
+      this.$emit("addToCalendar", this.location);
+    },
   },
   mounted() {
     this.estimateTime();
 
-    let cookie = this.getCookie(IS_JOINED)
-    if(cookie) {
-      this.isJoined = true
+    let cookie = this.getCookie(IS_JOINED);
+    if (cookie) {
+      this.isJoined = true;
     }
   },
 
