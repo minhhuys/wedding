@@ -9,6 +9,9 @@ export default {
     ],
     link: [{ rel: "icon", type: "image/x-icon", href: "/favicon.ico" }],
   },
+  generate: {
+    fallback: true,
+  },
   purgeCSS: {
     whitelist: [
       "aos-init",
