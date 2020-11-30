@@ -1,7 +1,7 @@
 <template>
   <div class="wedding-info has-text-centered">
     <div class="wedding-info__content">
-      <p class="wedding-info__title">Hôn lẽ sẽ được cử hành tại</p>
+      <p class="wedding-info__title">Buổi tiệc sẽ được diễn ra tại</p>
       <img src="@/assets/images/crow.png" alt />
 
       <h3>Trung tâm hội nghị tiệc cưới</h3>
@@ -69,7 +69,7 @@
       <div class="wedding-thanksful" v-else>
         <div class="thanksful-title" id="confeti">
           <img src="@/assets/images/cracker.png" alt />
-          <p>Cảm ơn bạn đến và chung vui</p>
+          <p>Cảm ơn bạn đã xác nhận sự tham dự</p>
         </div>
         <div class="add-to-calendar">
           <p>Thêm sự kiện này vào calendar của bạn</p>

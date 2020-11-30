@@ -103,15 +103,15 @@ export default {
       hanoi: {
         location: "VẠN HOA PREMIUM",
         detail: "<p>Tầng 4 <br>Số 2 Chương Dương Độ, Hoàn Kiếm, Hà Nội</p>",
-        time: "Vào lúc 11 giờ 00",
+        time: `Vào lúc "11 giờ 00"`,
         date: "THỨ HAI - 07 | 12 | 2020",
         timeToCountDown: "Dec 07, 2020 11:00:00",
       },
       saigon: {
         location: "THE ADORA DYNASTY",
         detail: "<p>Sảnh Ruby Tôn <br>1A Tôn Thất Tùng, Quận 1, TP HCM</p>",
-        time: "Vào lúc 18 giờ 30",
-        date: "THỨ SÁU - 07 | 12 | 2020",
+        time: `Vào lúc "18 giờ 30"`,
+        date: "THỨ SÁU - 11 | 12 | 2020",
         timeToCountDown: "Dec 11, 2020 18:30:00",
       },
     };
