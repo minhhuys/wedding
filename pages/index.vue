@@ -46,7 +46,7 @@
 
         <div class="be" v-if="!useMedia_isMobile">
           <img src="@/assets/images/be.png" width="200" height="200" alt />
-          <p>Kiều Trinh</p>
+          <p>Việt Trinh</p>
         </div>
       </div>
 
@@ -109,7 +109,7 @@ export default {
       },
       saigon: {
         location: "THE ADORA DYNASTY",
-        detail: "<p>Sảnh Ruby Tôn <br>1A Tôn Thất Tùng, Quận 1, TP HCM</p>",
+        detail: "<p>Sảnh Ruby <br>1A Tôn Thất Tùng, Quận 1, TP HCM</p>",
         time: `Vào lúc "18 giờ 30"`,
         date: "THỨ SÁU - 11 | 12 | 2020",
         timeToCountDown: "Dec 11, 2020 18:30:00",
@@ -128,9 +128,9 @@ export default {
     addToCalendar(location) {
       let url = ''
       if(location === 'Hanoi') {
-        url = `http://www.google.com/calendar/event?action=TEMPLATE&dates=20201207T040000Z%2F20201207T060000Z&text=Bao%20Trinh%20's%20wedding%20invitation&location=V%E1%BA%A0N%20HOA%20PREMIUM%20-%20T%E1%BA%A7ng%204%20S%E1%BB%91%202%20Ch%C6%B0%C6%A1ng%20D%C6%B0%C6%A1ng%20%C4%90%E1%BB%99%2C%20Ho%C3%A0n%20Ki%E1%BA%BFm%2C%20H%C3%A0%20N%E1%BB%99i&details=Tr%C3%A2n%20tr%E1%BB%8Dng%20m%E1%BB%9Di%20b%E1%BA%A1n%20t%E1%BB%9Bi%20d%E1%BB%B1%20%C4%91%C3%A1m%20c%C6%B0%E1%BB%9Bi%20Ho%C3%A0i%20B%E1%BA%A3o%20v%C3%A0%20Vi%E1%BB%87t%20Trinh`
+        url = `http://www.google.com/calendar/event?action=TEMPLATE&dates=20201207T040000Z%2F20201207T053000Z&text=Save%20The%20Date%20-%20Ho%C3%A0i%20B%E1%BA%A3o%20x%20Vi%E1%BB%87t%20Trinh&location=Van%20Hoa%20Premium%20Events%20%26%20Wedding%2C%202%20Ch%C6%B0%C6%A1ng%20D%C6%B0%E1%BB%A3ng%20%C4%90%E1%BB%99%2C%20Ho%C3%A0n%20Ki%E1%BA%BFm%2C%20H%C3%A0%20N%E1%BB%99i&details=C%E1%BA%A3m%20%C6%A1n%20b%E1%BA%A1n%20%C4%91%C3%A3%20nh%E1%BA%ADn%20l%E1%BB%9Di%20%C4%91%E1%BA%BFn%20chung%20vui%20c%C3%B9ng%20B%E1%BA%A3o%20v%C3%A0%20Trinh%20%F0%9F%A5%B3`
       } else {
-        url = `http://www.google.com/calendar/event?action=TEMPLATE&dates=20201211T113000Z%2F20201211T133000Z&text=Bao%20Trinh%20's%20wedding%20invitation&location=THE%20ADORA%20DYNASTY%20s%E1%BB%91%201A%20T%C3%B4n%20Th%E1%BA%A5t%20T%C3%B9ng%2C%20qu%E1%BA%ADn%201&details=Tr%C3%A2n%20tr%E1%BB%8Dng%20m%E1%BB%9Di%20b%E1%BA%A1n%20t%E1%BB%9Bi%20d%E1%BB%B1%20%C4%91%C3%A1m%20c%C6%B0%E1%BB%9Bi%20Ho%C3%A0i%20B%E1%BA%A3o%20v%C3%A0%20Vi%E1%BB%87t%20Trinh`
+        url = `http://www.google.com/calendar/event?action=TEMPLATE&dates=20201211T110000Z%2F20201211T140000Z&text=Save%20The%20Date%20-%20Ho%C3%A0i%20B%E1%BA%A3o%20x%20Vi%E1%BB%87t%20Trinh&location=ADORA%20DYNASTY%2C%201A%20%C4%90%C6%B0%E1%BB%9Dng%20T%C3%B4n%20Th%E1%BA%A5t%20T%C3%B9ng%2C%20ph%C6%B0%E1%BB%9Dng%20Ph%E1%BA%A1m%20Ng%C5%A9%20L%C3%A3o%2C%20Qu%E1%BA%ADn%201%2C%20Th%C3%A0nh%20ph%E1%BB%91%20H%E1%BB%93%20Ch%C3%AD%20Minh&details=C%E1%BA%A3m%20%C6%A1n%20b%E1%BA%A1n%20%C4%91%C3%A3%20nh%E1%BA%ADn%20l%E1%BB%9Di%20%C4%91%E1%BA%BFn%20chung%20vui%20c%C3%B9ng%20B%E1%BA%A3o%20v%C3%A0%20Trinh%20%F0%9F%A5%B3`
       }
       return window.open(url, "_blank")
     }
