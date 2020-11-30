@@ -39,9 +39,9 @@
           <p>Hoài Bảo</p>
         </div>
 
-        <div class="center-image">
-          <img class="main-pic" src="@/assets/images/baotran.png" alt />
-          <img class="flower-pic" src="@/assets/images/flower-center.png" alt />
+        <div class="center-image" >
+          <img class="main-pic" v-lazy="require('~/assets/images/baotran.png')" alt />
+          <img class="flower-pic" v-lazy="require('~/assets/images/flower-center.png')" alt />
         </div>
 
         <div class="be" v-if="!useMedia_isMobile">
