@@ -12,7 +12,7 @@ export default {
   generate: {
     fallback: true,
   },
-  ssr: "spa",
+  mode: "spa",
   purgeCSS: {
     whitelist: [
       "aos-init",
