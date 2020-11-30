@@ -4,25 +4,25 @@
 
     <div class="wedding-images">
       <div class="wedding-image">
-        <img class="main-img" v-lazy="require('~/assets/images/baotran4.png')" alt />
+        <img class="main-img" src="@/assets/images/baotran4.png" alt />
         <div class="view-image" @click="openModal(require(`~/assets/images/baotran4.png`))">
           <img src="@/assets/images/view.png" alt />
         </div>
       </div>
       <div class="wedding-image">
-        <img v-lazy="require('~/assets/images/baotran2.png')" class="main-img" alt />
+        <img src="@/assets/images/baotran2.png" class="main-img" alt />
         <div class="view-image" @click="openModal(require(`~/assets/images/baotran2.png`))">
           <img src="@/assets/images/view.png" alt />
         </div>
       </div>
       <div class="wedding-image">
-        <img v-lazy="require('~/assets/images/baotran3.png')" class="main-img" alt />
+        <img src="@/assets/images/baotran3.png" class="main-img" alt />
         <div class="view-image" @click="openModal(require(`~/assets/images/baotran3.png`))">
           <img src="@/assets/images/view.png" alt />
         </div>
       </div>
       <div class="wedding-image">
-        <img v-lazy="require('~/assets/images/baotran4.png')" class="main-img" alt />
+        <img src="@/assets/images/baotran4.png" class="main-img" alt />
         <div class="view-image" @click="openModal(require(`~/assets/images/baotran4.png`))">
           <img src="@/assets/images/view.png" alt />
         </div>

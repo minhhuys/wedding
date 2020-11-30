@@ -32,8 +32,7 @@ export default {
   plugins: [
     { src: "@/plugins/aos.js", mode: "client" },
     { src: "@/plugins/buefy.js", ssr: false },
-    { src: "@/mixins/useMedia", ssr: false },
-    { src: "~/plugins/vue-lazy", ssr: false },
+    { src: "@/mixins/useMedia", ssr: false }
   ],
 
   // Auto import components (https://go.nuxtjs.dev/config-components)
