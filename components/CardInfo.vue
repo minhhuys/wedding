@@ -354,7 +354,21 @@ export default {
           p {
             font-size: 12px;
           }
+
+          button {
+            img {
+              margin-right: 5px !important;
+            }
+          }
+
+          
           padding: 0 10px;
+        }
+
+        .thanksful-title {
+          p { 
+            font-size: 12px;;
+          }
         }
       }
     }
