@@ -5,7 +5,7 @@ export default {
     meta: [
       { charset: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { hid: "description", name: "description", content: "We are getting married ❤️ Share your excitement with a celebratory “Congrats!” or “Best Wishes!” Then, make it extra special with a personalized note. Add in an anecdotal message or a personal wish for our’s new journey together. Whatever you decide to write, say it from the heart." },
+      { hid: "description", name: "description", content: "We are getting married ❤️ Let's cherish the moment and send your best wishes for our’s new journey together." },
     ],
     link: [{ rel: "icon", type: "image/x-icon", href: "/favicon.ico" }],
   },
