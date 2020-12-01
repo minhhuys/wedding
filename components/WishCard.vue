@@ -121,7 +121,7 @@
 
 <script>
 const TOKEN_CNAME = "is_wished";
-
+import useMedia from "@/mixins/useMedia";
 
 export default {
   data() {
@@ -162,12 +162,10 @@ export default {
         return (this.isError = true);
       }
 
-      // this.setCookie(TOKEN_CNAME, true, 30)
-      // this.isMessaged = true
-
       let data = {
         name: this.name,
         phone: this.phone,
+        email : this.useMedia_isMobile ? `Gửi từ mobile` : `Gửi từ PC`,
         message: this.message,
       };
 
