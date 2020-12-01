@@ -4,8 +4,8 @@
 
     <div class="wedding-images">
       <div class="wedding-image">
-        <img class="main-img" src="@/assets/images/baotran4.png" alt />
-        <div class="view-image" @click="openModal(require(`~/assets/images/baotran4.png`))">
+        <img class="main-img" src="@/assets/images/baotran1.png" alt />
+        <div class="view-image" @click="openModal(require(`~/assets/images/baotran1.png`))">
           <img src="@/assets/images/view.png" alt />
         </div>
       </div>
@@ -30,7 +30,7 @@
     </div>
 
     <div>
-      <button>Xem tất cả ảnh</button>
+      <button @click="more">Xem tất cả ảnh</button>
     </div>
 
     <div class="modal-image" v-if="showModal">
@@ -56,6 +56,9 @@ export default {
     close() {
       this.showModal = false;
     },
+    more() {
+      window.open("https://drive.google.com/drive/folders/1IYjZzzoQPuuHYd-p2nyLoAVyLlua2QkX?usp=sharing", "_blank")
+    }
   },
 };
 </script>

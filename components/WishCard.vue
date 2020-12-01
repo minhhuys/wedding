@@ -54,9 +54,11 @@
             <div>
               <img src="@/assets/images/box.gif" width="90" height="90" alt />
             </div>
-            <div>
-              <p>Mã giảm giá AhaMove giảm 50% tối đa đ15,000</p>
-              <span>Hạn sử dụng: 29/12/2020</span>
+            <div class="code-description">
+              <p>Nhập mã <b>"BAOTRINH"</b></p>
+              <span>AhaMove: Giảm 30K cho 3 chuyến giao hàng</span>
+              <br>
+              <span>#be: Giảm 30% tối đa 30K cho 5 chuyến đi beCar hoặc beBike</span>
             </div>
           </div>
         </div>
@@ -65,9 +67,9 @@
 
         <div class="onelink">
           <div class="ahamove">
-            <p>Ahamove</p>
+            <p>AhaMove</p>
             <div class="google-play">
-              <a href="#">
+              <a target="_blank" href="https://play.google.com/store/apps/details?id=com.ahamove.user">
                 <img
                   src="@/assets/images/gg-play.png"
                   width="135"
@@ -77,7 +79,7 @@
               </a>
             </div>
             <div class="appstore">
-              <a href="#">
+              <a href="https://apps.apple.com/vn/app/ahamove/id987325355" target="_blank">
                 <img
                   src="@/assets/images/appstore.png"
                   width="135"
@@ -88,10 +90,10 @@
             </div>
           </div>
           <div class="be">
-            <p>be</p>
+            <p>#be</p>
 
             <div class="google-play">
-              <a href="#">
+              <a href="https://play.google.com/store/apps/details?id=xyz.be.customer" target="_blank">
                 <img
                   src="@/assets/images/gg-play.png"
                   width="135"
@@ -101,7 +103,7 @@
               </a>
             </div>
             <div class="appstore">
-              <a href="#">
+              <a href="https://apps.apple.com/vn/app/be-vietnamese-ride-hailing/id1440565902" target="_blank">
                 <img
                   src="@/assets/images/appstore.png"
                   width="135"
@@ -119,6 +121,7 @@
 
 <script>
 const TOKEN_CNAME = "is_wished";
+
 
 export default {
   data() {
@@ -210,6 +213,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
+
 .wedding-card__wishes {
   display: flex;
   padding: 70px 0;
@@ -233,11 +238,15 @@ export default {
     background-color: white;
     padding: 25px;
     margin: 0 auto;
+    font-family: 'Roboto', sans-serif;
+
     h3 {
       text-align: center;
       margin-bottom: 20px;
       color: #c0690a;
       font-size: 24px;
+      font-family: "Prata", serif;
+      font-weight: 500;
     }
 
     .note {
@@ -311,15 +320,23 @@ export default {
         border: 1px solid white;
         display: flex;
         align-items: center;
+        padding: 8px;
 
         p {
           color: #0a1332;
-          font-weight: 600;
+          font-weight: 500;
           font-size: 18px;
         }
-        span {
-          color: #7f828b;
-          font-size: 16px;
+        // span {
+        //   color: #7f828b;
+        //   font-size: 16px;
+        // }
+
+        .code-description {
+          span {
+            font-size: 13px;
+            color: #7A8189;
+          }
         }
       }
     }
@@ -376,7 +393,7 @@ export default {
             font-size: 16px;
           }
           span {
-            font-size: 14px;
+            font-size: 12px;
           }
         }
       }

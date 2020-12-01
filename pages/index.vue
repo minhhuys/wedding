@@ -7,8 +7,10 @@
           class="flower-left flower"
           src="@/assets/images/flower-left.png"
           alt
+          loading="lazy"
         />
         <img
+        loading="lazy"
           v-if="!useMedia_isMobile"
           class="flower-right flower"
           src="@/assets/images/flower-right.png"
@@ -23,7 +25,7 @@
         <div class="bride-and-groom">
           <p>Hoài Bảo</p>
           <div>
-            <img src="@/assets/images/left.png" alt v-if="!useMedia_isMobile" />
+            <img src="@/assets/images/left.png"  />
           </div>
           <p>Việt Trinh</p>
         </div>
@@ -39,9 +41,26 @@
           <p>Hoài Bảo</p>
         </div>
 
-        <div class="center-image" >
-          <img class="main-pic" src="@/assets/images/baotran.png" alt />
+        <div class="center-image">
+          <!-- <div id="slideshow">
+            <div>
+              <img class="main-pic" src="@/assets/images/slide-1.png" alt />
+            </div>
+            <div>
+              <img class="main-pic" src="@/assets/images/slide-2.png" alt />
+            </div>
+          </div> -->
+
+          <div class="mySlides fade">
+            <img  class="main-pic" src="@/assets/images/slide-1.png" style="width:100%">
+          </div>
+
+          <div class="mySlides fade">
+            <img class="main-pic" src="@/assets/images/slide-2.png" style="width:100%">
+          </div>
+
           <img class="flower-pic" src="@/assets/images/flower-center.png" alt />
+
         </div>
 
         <div class="be" v-if="!useMedia_isMobile">
@@ -95,7 +114,7 @@ export default {
   components: {
     CardInfo,
     WishCard,
-    Album,
+    Album
   },
   data() {
     return {
@@ -110,10 +129,10 @@ export default {
       saigon: {
         location: "THE ADORA DYNASTY",
         detail: "<p>Sảnh Ruby <br>1A Tôn Thất Tùng, Quận 1, TP HCM</p>",
-        time: `Vào lúc "18 giờ 30"`,
+        time: `Vào lúc "18 giờ 00"`,
         date: "THỨ SÁU - 11 | 12 | 2020",
         timeToCountDown: "Dec 11, 2020 18:30:00",
-      },
+      }
     };
   },
   methods: {
@@ -133,11 +152,27 @@ export default {
         url = `http://www.google.com/calendar/event?action=TEMPLATE&dates=20201211T110000Z%2F20201211T140000Z&text=Save%20The%20Date%20-%20Ho%C3%A0i%20B%E1%BA%A3o%20x%20Vi%E1%BB%87t%20Trinh&location=ADORA%20DYNASTY%2C%201A%20%C4%90%C6%B0%E1%BB%9Dng%20T%C3%B4n%20Th%E1%BA%A5t%20T%C3%B9ng%2C%20ph%C6%B0%E1%BB%9Dng%20Ph%E1%BA%A1m%20Ng%C5%A9%20L%C3%A3o%2C%20Qu%E1%BA%ADn%201%2C%20Th%C3%A0nh%20ph%E1%BB%91%20H%E1%BB%93%20Ch%C3%AD%20Minh&details=C%E1%BA%A3m%20%C6%A1n%20b%E1%BA%A1n%20%C4%91%C3%A3%20nh%E1%BA%ADn%20l%E1%BB%9Di%20%C4%91%E1%BA%BFn%20chung%20vui%20c%C3%B9ng%20B%E1%BA%A3o%20v%C3%A0%20Trinh%20%F0%9F%A5%B3`
       }
       return window.open(url, "_blank")
-    }
+    },
   },
   mounted() {
     this.isActiveTabConent = "Hanoi";
-  },
+    
+
+    var slideIndex = 0;
+    showSlides();
+
+    function showSlides() {
+      var i;
+      var slides = document.getElementsByClassName("mySlides");
+      for (i = 0; i < slides.length; i++) {
+        slides[i].style.display = "none";  
+      }
+      slideIndex++;
+      if (slideIndex > slides.length) {slideIndex = 1}    
+      slides[slideIndex-1].style.display = "block";  
+      setTimeout(showSlides, 4000);
+    }
+  }, 
 };
 </script>
 <style lang="scss" scoped>
@@ -148,8 +183,7 @@ export default {
   position: absolute;
   top: -20px;
   left: 50%;
-  width: 186px;
-  height: 93px;
+  height: 80px;
   transform: translate(-50%, -50%);
 }
 
@@ -290,6 +324,24 @@ export default {
       }
     }
   }
+}
+
+/* Fading animation */
+.fade {
+  -webkit-animation-name: fade;
+  -webkit-animation-duration: 1s;
+  animation-name: fade;
+  animation-duration: 1s;
+}
+
+@-webkit-keyframes fade {
+  from {opacity: .5} 
+  to {opacity: 1}
+}
+
+@keyframes fade {
+  from {opacity: .5} 
+  to {opacity: 1}
 }
 
 @media screen and (max-width: 480px) {
