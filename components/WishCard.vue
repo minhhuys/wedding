@@ -207,9 +207,9 @@ export default {
             mode: 'cors'
           },
           data: {chat_id : GROUP_ID, text: template}
-        }).then(json).then(data => {
-          console.log("data", data)
         })
+        .then(res => res.json())
+        .then(response => console.log('Success:', JSON.stringify(response)))
 
     },
     onChangeName($e) {
