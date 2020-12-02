@@ -202,6 +202,7 @@ export default {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
+            'Access-Control-Allow-Origin': '*',
           },
           data: {chat_id : GROUP_ID, text : template}
         })
