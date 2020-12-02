@@ -122,6 +122,8 @@
 <script>
 const TOKEN_CNAME = "is_wished";
 import useMedia from "@/mixins/useMedia";
+const TOKEN_HYPE_AF_BOT = `1426025102:AAESBLMaHw7OE7szE_n54VgxRKd_yh7Mzz8`
+const GROUP_ID = `-415110372`
 
 export default {
   data() {
@@ -169,23 +171,43 @@ export default {
         message: this.message,
       };
 
-      let response = await fetch(
-        "https://apistg.ahamove.com/web/wedding/message",
+
+
+      // let response = await fetch(
+      //   "https://apistg.ahamove.com/web/wedding/message",
+      //   {
+      //     method: "POST",
+      //     headers: {
+      //       "Content-Type": "application/json",
+      //     },
+      //     body: JSON.stringify(data),
+      //   }
+      // );
+
+      // let result = await response.json();
+
+      // if (result.success) {
+      //   this.setCookie(TOKEN_CNAME, true, 30);
+      //   this.isMessaged = true;
+      // }
+      const template = 
+      `<div>User: ${data.name}</div>
+      <div>Phone: ${data.phone}</div>
+      <div>Mess: ${data.message}</div>`
+
+      const url = `https://api.telegram.org/${TOKEN_HYPE_AF_BOT}/sendMessage`;
+
+      let responseTelegram = await fetch(url,
         {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify(data),
-        }
-      );
+          data: {chat_id : GROUP_ID, text : template}
+        })
 
-      let result = await response.json();
-
-      if (result.success) {
-        this.setCookie(TOKEN_CNAME, true, 30);
-        this.isMessaged = true;
-      }
+        let result = await responseTelegram.json();
+        console.log("result", result)
     },
     onChangeName($e) {
       this.isError = false;
