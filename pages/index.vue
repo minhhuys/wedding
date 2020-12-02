@@ -133,7 +133,7 @@ export default {
         detail: "<p>Sảnh Ruby <br>1A Tôn Thất Tùng, Quận 1, TP HCM</p>",
         time: `Vào lúc "18 giờ 00"`,
         date: "THỨ SÁU - 11 | 12 | 2020",
-        timeToCountDown: "Dec 11, 2020 18:30:00",
+        timeToCountDown: "Dec 11, 2020 18:00:00",
       }
     };
   },
