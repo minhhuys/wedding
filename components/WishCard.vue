@@ -159,7 +159,7 @@ export default {
       return "";
     },
 
-    submit() {
+    async submit() {
       if (!this.name || !this.phone || !this.message) {
         return (this.isError = true);
       }
@@ -195,21 +195,18 @@ export default {
       <div>Phone: ${data.phone}</div>
       <div>Mess: ${data.message}</div>`
 
-      const url = `https://api.telegram.org/${TOKEN_HYPE_AF_BOT}/sendMessage`;
+      const url = `https://api.telegram.org/bot${TOKEN_HYPE_AF_BOT}/sendMessage`;
 
-      let responseTelegram = fetch(url,
+      let responseTelegram = await fetch(url,
         {
           method: "POST",
           headers: {
-            "Content-Type": "application/json",
-            'Access-Control-Allow-Origin': 'https://ahamove-wedding.netlify.app',
-            'Access-Control-Allow-Credentials': true,
-            mode: 'cors'
+            "Content-Type": "application/json"
           },
           data: {chat_id : GROUP_ID, text: template}
         })
-        .then(res => res.json())
-        .then(response => console.log('Success:', JSON.stringify(response)))
+        let result = await responseTelegram.json();
+        console.log(result)
 
     },
     onChangeName($e) {
