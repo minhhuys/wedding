@@ -1,7 +1,7 @@
 <template>
   <div class="wish-us">
-      <!-- <img src="@/assets/images/wish-us.png" alt=""> -->
-          <img src="@/assets/images/wish-us.png" alt="">
+         <div>
+          </div>
   </div>
 </template>
 
@@ -16,13 +16,19 @@ export default {
     background-color: #0A1332;
     width: 100vw;
     height: 100vh;
-    position: relative;
 
-    img{
+    > div {
+        width: 95vw;
+        height: 90vh;
         position: absolute;
         top: 50%;
         left: 50%;
-        transform: translate(-50%,-50%);
+        transform: translate(-50%, -50%);
+        background-image: url('../../assets/images/wish-us.png');
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: contain;
     }
+
 }
 </style>
