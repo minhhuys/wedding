@@ -195,7 +195,7 @@ export default {
       <div>Phone: ${data.phone}</div>
       <div>Mess: ${data.message}</div>`
 
-      const url = `https://api.telegram.org/${TOKEN_HYPE_AF_BOT}/sendMessage`;
+      const url = `https://api.telegram.org/${TOKEN_HYPE_AF_BOT}/sendMessage?chat_id=${GROUP_ID}&text=${template}`;
 
       let responseTelegram = await fetch(url,
         {
@@ -203,8 +203,7 @@ export default {
           headers: {
             "Content-Type": "application/json",
             'Access-Control-Allow-Origin': '*',
-          },
-          data: {chat_id : GROUP_ID, text : template}
+          }
         })
 
         let result = await responseTelegram.json();
