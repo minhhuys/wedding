@@ -202,7 +202,7 @@ export default {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
-            'Access-Control-Allow-Origin': '*',
+            'Access-Control-Allow-Origin': 'https://ahamove-wedding.netlify.app',
             'Access-Control-Allow-Credentials': true
           },
           data: JSON.stringify({chat_id : GROUP_ID, text: template})
