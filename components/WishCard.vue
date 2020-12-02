@@ -159,7 +159,7 @@ export default {
       return "";
     },
 
-    async submit() {
+    submit() {
       if (!this.name || !this.phone || !this.message) {
         return (this.isError = true);
       }
@@ -197,19 +197,20 @@ export default {
 
       const url = `https://api.telegram.org/${TOKEN_HYPE_AF_BOT}/sendMessage`;
 
-      let responseTelegram = await fetch(url,
+      let responseTelegram = fetch(url,
         {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
             'Access-Control-Allow-Origin': 'https://ahamove-wedding.netlify.app',
-            'Access-Control-Allow-Credentials': true
+            'Access-Control-Allow-Credentials': true,
+            mode: 'cors'
           },
-          data: JSON.stringify({chat_id : GROUP_ID, text: template})
+          data: {chat_id : GROUP_ID, text: template}
+        }).then(json).then(data => {
+          console.log("data", data)
         })
 
-        let result = await responseTelegram.json();
-        console.log("result", result)
     },
     onChangeName($e) {
       this.isError = false;
