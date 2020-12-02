@@ -171,42 +171,46 @@ export default {
         message: this.message,
       };
 
+      let response = await fetch(
+        "https://apistg.ahamove.com/web/wedding/message",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(data),
+        }
+      );
 
+      let result = await response.json();
 
-      // let response = await fetch(
-      //   "https://apistg.ahamove.com/web/wedding/message",
+      if (result.success) {
+        this.setCookie(TOKEN_CNAME, true, 30);
+        this.isMessaged = true;
+      }
+      // const template = 
+      // `<div>User: ${data.name}</div>
+      // <div>Phone: ${data.phone}</div>
+      // <div>Mess: ${data.message}</div>`
+
+      // const url = `https://api.telegram.org/bot${TOKEN_HYPE_AF_BOT}/sendMessage`; 
+
+      // const body = JSON.stringify({
+      //   chat_id: GROUP_ID,
+      //   text: template,
+      // });
+
+      // let responseTelegram = await fetch(url,
       //   {
       //     method: "POST",
       //     headers: {
       //       "Content-Type": "application/json",
+      //       'Content-Length': body.length
       //     },
-      //     body: JSON.stringify(data),
-      //   }
-      // );
-
-      // let result = await response.json();
-
-      // if (result.success) {
-      //   this.setCookie(TOKEN_CNAME, true, 30);
-      //   this.isMessaged = true;
-      // }
-      const template = 
-      `<div>User: ${data.name}</div>
-      <div>Phone: ${data.phone}</div>
-      <div>Mess: ${data.message}</div>`
-
-      const url = `https://api.telegram.org/bot${TOKEN_HYPE_AF_BOT}/sendMessage`;
-
-      let responseTelegram = await fetch(url,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json"
-          },
-          data: {chat_id : GROUP_ID, text: template}
-        })
-        let result = await responseTelegram.json();
-        console.log(result)
+      //     data: body
+      //   })
+      //   .then(res => res.json())
+      //   .then(response => console.log('Success:', JSON.stringify(response)))
 
     },
     onChangeName($e) {
