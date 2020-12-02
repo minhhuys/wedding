@@ -1,4 +1,5 @@
 <template>
+  
   <div class="wedding">
     <div class="wedding-main">
       <div class="wedding-intro">
@@ -119,6 +120,7 @@ export default {
   data() {
     return {
       isActiveTabConent: null,
+      loaded: false,
       hanoi: {
         location: "VẠN HOA PREMIUM",
         detail: "<p>Tầng 4 <br>Số 2 Chương Dương Độ, Hoàn Kiếm, Hà Nội</p>",
@@ -156,7 +158,6 @@ export default {
   },
   mounted() {
     this.isActiveTabConent = "Hanoi";
-    
 
     var slideIndex = 0;
     showSlides();
@@ -342,6 +343,23 @@ export default {
 @keyframes fade {
   from {opacity: .5} 
   to {opacity: 1}
+}
+
+.fade-bg {
+  -webkit-animation-name: fadeBg;
+  -webkit-animation-duration: 1s;
+  animation-name: fadeBg;
+  animation-duration: 1s;
+}
+
+@-webkit-keyframes fadeBg {
+  from {opacity: .3} 
+  to {opacity: .8}
+}
+
+@keyframes fadeBg {
+  from {opacity: .3} 
+  to {opacity: .8}
 }
 
 @media screen and (max-width: 480px) {
