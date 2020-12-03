@@ -188,29 +188,18 @@ export default {
         this.setCookie(TOKEN_CNAME, true, 30);
         this.isMessaged = true;
       }
-      // const template = 
-      // `<div>User: ${data.name}</div>
-      // <div>Phone: ${data.phone}</div>
-      // <div>Mess: ${data.message}</div>`
 
-      // const url = `https://api.telegram.org/bot${TOKEN_HYPE_AF_BOT}/sendMessage`; 
+      let template = `user: \*${data.name}* %0Aphone: \*${data.phone}*%0Amessage: \*${data.message}*`
 
-      // const body = JSON.stringify({
-      //   chat_id: GROUP_ID,
-      //   text: template,
-      // });
+      const url = `https://api.telegram.org/bot${TOKEN_HYPE_AF_BOT}/sendMessage?chat_id=${GROUP_ID}&parse_mode=markdown&text=${template}`; 
 
-      // let responseTelegram = await fetch(url,
-      //   {
-      //     method: "POST",
-      //     headers: {
-      //       "Content-Type": "application/json",
-      //       'Content-Length': body.length
-      //     },
-      //     data: body
-      //   })
-      //   .then(res => res.json())
-      //   .then(response => console.log('Success:', JSON.stringify(response)))
+      let responseTelegram = await fetch(url,
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        })
 
     },
     onChangeName($e) {
