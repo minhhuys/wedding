@@ -46,7 +46,6 @@
             placeholder="Tên quý khách"
             @input="handleChangeName"
           />
-
           <select
             id="location"
             name="location"
@@ -56,8 +55,8 @@
             <option value disabled selected hidden>
               Chọn địa điểm tham dự... 
             </option>
-            <!-- <option value="Hanoi">Hà Nội</option> -->
-            <option value="Saigon">Sài Gòn</option>
+            <option v-if="!data['hanoi'].isHappened" value="Hanoi">Hà Nội</option>
+            <option v-if="!data['saigon'].isHappened" value="Saigon">Sài Gòn</option>
           </select>
 
           <p class="error" v-if="isError">
@@ -90,6 +89,9 @@
 const IS_JOINED = "is_joined";
 export default {
   props: {
+    data : {
+      type: Object
+    },
     info: {
       type: Object,
     },

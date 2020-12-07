@@ -88,6 +88,7 @@
             <CardInfo
               :key="isActiveTabConent"
               :info="isActiveTabConent === 'Hanoi' ? info['hanoi'] : info['saigon']"
+              :data="info"
               @addToCalendar="addToCalendar"
               @isHappened="setStatusEvent"
             />
