@@ -11,74 +11,77 @@
       <br />
       <p class="wedding-info__time">{{ info.time }}</p>
       <p class="wedding-info__date">{{ info.date }}</p>
-      <span class="wedding-info__time-left-text">Chỉ còn</span>
+      <div v-if="isNotHappened">
+        <span class="wedding-info__time-left-text">Chỉ còn</span>
 
-      <div class="count-time">
-        <div>
-          <p>{{ days > 9 ? days : `0${days}` }}</p>
-          <span>Ngày</span>
+        <div class="count-time">
+          <div>
+            <p>{{ days > 9 ? days : `0${days}` }}</p>
+            <span>Ngày</span>
+          </div>
+          <div>
+            <p>{{ hours > 9 ? hours : `0${hours}` }}</p>
+            <span>Giờ</span>
+          </div>
+          <div>
+            <p>{{ minutes > 9 ? minutes : `0${minutes}` }}</p>
+            <span>Phút</span>
+          </div>
+          <div>
+            <p>{{ seconds > 9 ? seconds : `0${seconds}` }}</p>
+            <span>Giây</span>
+          </div>
         </div>
-        <div>
-          <p>{{ hours > 9 ? hours : `0${hours}` }}</p>
-          <span>Giờ</span>
+
+        <span class="wedding-appriciate">
+          Sự hiện diện của Quý khách
+          <br />là niềm vinh hạnh cho gia đình chúng tôi
+        </span>
+
+        <div class="wedding-participate" v-if="!isJoined">
+          <input
+            v-model="name"
+            type="text"
+            class="participant-name"
+            placeholder="Tên quý khách"
+            @input="handleChangeName"
+          />
+
+          <select
+            id="location"
+            name="location"
+            v-model="location"
+            @input="handleChangeLocation"
+          >
+            <option value disabled selected hidden>
+              Chọn địa điểm tham dự...
+            </option>
+            <option value="Hanoi">Hà Nội</option>
+            <option value="Saigon">Sài Gòn</option>
+          </select>
+
+          <p class="error" v-if="isError">
+            Vui lòng nhập đầy đủ thông tin trước khi xác nhận!
+          </p>
+
+          <button @click="join">Tham dự</button>
         </div>
-        <div>
-          <p>{{ minutes > 9 ? minutes : `0${minutes}` }}</p>
-          <span>Phút</span>
-        </div>
-        <div>
-          <p>{{ seconds > 9 ? seconds : `0${seconds}` }}</p>
-          <span>Giây</span>
+
+        <div class="wedding-thanksful" v-else>
+          <div class="thanksful-title" id="confeti">
+            <img src="@/assets/images/cracker.png" alt />
+            <p>Cảm ơn bạn đã xác nhận sự tham dự</p>
+          </div>
+          <div class="add-to-calendar">
+            <p>Thêm sự kiện này vào calendar của bạn</p>
+            <button @click="addToCalendar">
+              <img src="@/assets/images/calendar.png" alt />
+              <p>Thêm ngay</p>
+            </button>
+          </div>
         </div>
       </div>
-
-      <span class="wedding-appriciate">
-        Sự hiện diện của Quý khách
-        <br />là niềm vinh hạnh cho gia đình chúng tôi
-      </span>
-
-      <div class="wedding-participate" v-if="!isJoined">
-        <input
-          v-model="name"
-          type="text"
-          class="participant-name"
-          placeholder="Tên quý khách"
-          @input="handleChangeName"
-        />
-
-        <select
-          id="location"
-          name="location"
-          v-model="location"
-          @input="handleChangeLocation"
-        >
-          <option value disabled selected hidden>
-            Chọn địa điểm tham dự...
-          </option>
-          <option value="Hanoi">Hà Nội</option>
-          <option value="Saigon">Sài Gòn</option>
-        </select>
-
-        <p class="error" v-if="isError">
-          Vui lòng nhập đầy đủ thông tin trước khi xác nhận!
-        </p>
-
-        <button @click="join">Tham dự</button>
-      </div>
-
-      <div class="wedding-thanksful" v-else>
-        <div class="thanksful-title" id="confeti">
-          <img src="@/assets/images/cracker.png" alt />
-          <p>Cảm ơn bạn đã xác nhận sự tham dự</p>
-        </div>
-        <div class="add-to-calendar">
-          <p>Thêm sự kiện này vào calendar của bạn</p>
-          <button @click="addToCalendar">
-            <img src="@/assets/images/calendar.png" alt />
-            <p>Thêm ngay</p>
-          </button>
-        </div>
-      </div>
+      <p class="happened" v-else>===== Đã diễn ra ======</p>
     </div>
   </div>
 </template>
@@ -90,6 +93,11 @@ export default {
     info: {
       type: Object,
     },
+  },
+  computed: {
+    isNotHappened() {
+      return this.days >= 0 && this.hours >= 0 && this.minutes >= 0 && this.seconds >= 0
+    }
   },
   data() {
     return {
@@ -164,6 +172,15 @@ export default {
       this.$emit("addToCalendar", this.location);
     },
   },
+
+  // watch : {
+  //   isNotHappened(newVal, oldVal) {
+  //     if(newVal !== oldVal) {
+  //       this.$emit('isHappened', this.info.id)
+  //     }
+  //   }
+  // },
+
   mounted() {
     this.estimateTime();
 
@@ -183,6 +200,13 @@ export default {
 
 <style lang="scss" scoped>
 .wedding-info {
+
+  .happened {
+    font-size: 30px;
+    color: #c0690a;
+    margin: 20px 0;
+  }
+
   .wedding-info__content {
     max-width: 435px;
     margin: 0 auto;
