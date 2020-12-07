@@ -11,7 +11,7 @@
       <br />
       <p class="wedding-info__time">{{ info.time }}</p>
       <p class="wedding-info__date">{{ info.date }}</p>
-      <div v-if="isNotHappened">
+      <div v-if="!info.isHappened">
         <span class="wedding-info__time-left-text">Chỉ còn</span>
 
         <div class="count-time">
@@ -54,9 +54,9 @@
             @input="handleChangeLocation"
           >
             <option value disabled selected hidden>
-              Chọn địa điểm tham dự...
+              Chọn địa điểm tham dự... 
             </option>
-            <option value="Hanoi">Hà Nội</option>
+            <!-- <option value="Hanoi">Hà Nội</option> -->
             <option value="Saigon">Sài Gòn</option>
           </select>
 
@@ -81,7 +81,7 @@
           </div>
         </div>
       </div>
-      <p class="happened" v-else>===== Đã diễn ra ======</p>
+      <p class="happened" v-else>----- Đã diễn ra -----</p>
     </div>
   </div>
 </template>
@@ -95,8 +95,8 @@ export default {
     },
   },
   computed: {
-    isNotHappened() {
-      return this.days >= 0 && this.hours >= 0 && this.minutes >= 0 && this.seconds >= 0
+    isHappened() {
+      return this.days < 0 && this.hours < 0 && this.minutes < 0 && this.seconds < 0
     }
   },
   data() {
@@ -173,13 +173,13 @@ export default {
     },
   },
 
-  // watch : {
-  //   isNotHappened(newVal, oldVal) {
-  //     if(newVal !== oldVal) {
-  //       this.$emit('isHappened', this.info.id)
-  //     }
-  //   }
-  // },
+  watch : {
+    isHappened(newVal) {
+      if(newVal) {
+        this.$emit('isHappened', this.info.id)
+      }
+    }
+  },
 
   mounted() {
     this.estimateTime();

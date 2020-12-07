@@ -87,8 +87,9 @@
           <div class="tabcontent">
             <CardInfo
               :key="isActiveTabConent"
-              :info="isActiveTabConent === 'Hanoi' ? hanoi : saigon"
+              :info="isActiveTabConent === 'Hanoi' ? info['hanoi'] : info['saigon']"
               @addToCalendar="addToCalendar"
+              @isHappened="setStatusEvent"
             />
           </div>
         </div>
@@ -121,23 +122,25 @@ export default {
     return {
       isActiveTabConent: null,
       loaded: false,
-      hanoi: {
-        id: 'hanoi',
-        location: "VẠN HOA PREMIUM",
-        detail: "<p>Tầng 4 <br>Số 2 Chương Dương Độ, Hoàn Kiếm, Hà Nội</p>",
-        time: `Vào lúc "11 giờ 00"`,
-        date: "THỨ HAI - 07 | 12 | 2020",
-        timeToCountDown: "Dec 07, 2020 10:00:00",
-        isHappened: false
-      },
-      saigon: {
-        id: "saigon",
-        location: "THE ADORA DYNASTY",
-        detail: "<p>Sảnh Ruby <br>1A Tôn Thất Tùng, Quận 1, TP HCM</p>",
-        time: `Vào lúc "18 giờ 00"`,
-        date: "THỨ SÁU - 11 | 12 | 2020",
-        timeToCountDown: "Dec 11, 2020 18:00:00",
-        isHappened: false
+      info: {
+       hanoi: {
+          id: 'hanoi',
+          location: "VẠN HOA PREMIUM",
+          detail: "<p>Tầng 4 <br>Số 2 Chương Dương Độ, Hoàn Kiếm, Hà Nội</p>",
+          time: `Vào lúc "11 giờ 00"`,
+          date: "THỨ HAI - 07 | 12 | 2020",
+          timeToCountDown: "Dec 07, 2020 11:16:00",
+          isHappened: false
+        },
+        saigon: {
+          id: "saigon",
+          location: "THE ADORA DYNASTY",
+          detail: "<p>Sảnh Ruby <br>1A Tôn Thất Tùng, Quận 1, TP HCM</p>",
+          time: `Vào lúc "18 giờ 00"`,
+          date: "THỨ SÁU - 11 | 12 | 2020",
+          timeToCountDown: "Dec 11, 2020 18:00:00",
+          isHappened: false
+        }
       }
     };
   },
@@ -160,7 +163,7 @@ export default {
       return window.open(url, "_blank")
     },
     setStatusEvent(id) {
-      
+      this.info[id].isHappened = true
     }
   },
   mounted() {
