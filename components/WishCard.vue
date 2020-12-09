@@ -123,7 +123,7 @@
 const TOKEN_CNAME = "is_wished";
 import useMedia from "@/mixins/useMedia";
 const TOKEN_HYPE_AF_BOT = `1426025102:AAESBLMaHw7OE7szE_n54VgxRKd_yh7Mzz8`
-const GROUP_ID = `-415110372`
+const GROUP_ID = `-457260771`
 
 export default {
   data() {
