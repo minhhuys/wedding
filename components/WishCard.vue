@@ -171,6 +171,18 @@ export default {
         message: this.message,
       };
 
+      let template = `user: \*${data.name}* %0Aphone: \*${data.phone}*%0Amessage: \*${data.message}*`
+
+      const url = `https://api.telegram.org/bot${TOKEN_HYPE_AF_BOT}/sendMessage?chat_id=${GROUP_ID}&parse_mode=markdown&text=${template}`; 
+
+      let responseTelegram = await fetch(url,
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        })
+
       let response = await fetch(
         "https://apistg.ahamove.com/web/wedding/message",
         {
@@ -188,18 +200,6 @@ export default {
         this.setCookie(TOKEN_CNAME, true, 30);
         this.isMessaged = true;
       }
-
-      let template = `user: \*${data.name}* %0Aphone: \*${data.phone}*%0Amessage: \*${data.message}*`
-
-      const url = `https://api.telegram.org/bot${TOKEN_HYPE_AF_BOT}/sendMessage?chat_id=${GROUP_ID}&parse_mode=markdown&text=${template}`; 
-
-      let responseTelegram = await fetch(url,
-        {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-          },
-        })
 
     },
     onChangeName($e) {
