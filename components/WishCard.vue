@@ -43,7 +43,7 @@
           Vui lòng điền đủ thông tin để nhận quà bất ngờ từ chúng tôi
         </p>
 
-        <button @click="submit">Gửi ngay</button>
+        <b-button :loading="isLoading" :disabled="isLoading" @click="submit">Gửi ngay</b-button>
       </div>
 
       <div class="promotion" v-else>
@@ -133,6 +133,7 @@ export default {
       message: "",
       isError: false,
       isMessaged: false,
+      isLoading: false
     };
   },
   methods: {
@@ -159,7 +160,9 @@ export default {
       return "";
     },
 
-    async submit() {
+    submit() {
+      this.isLoading = true
+
       if (!this.name || !this.phone || !this.message) {
         return (this.isError = true);
       }
@@ -175,15 +178,14 @@ export default {
 
       const url = `https://api.telegram.org/bot${TOKEN_HYPE_AF_BOT}/sendMessage?chat_id=${GROUP_ID}&parse_mode=markdown&text=${template}`; 
 
-      let responseTelegram = await fetch(url,
-        {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-          },
-        })
+      fetch(url, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
 
-      let response = await fetch(
+      fetch(
         "https://apistg.ahamove.com/web/wedding/message",
         {
           method: "POST",
@@ -191,15 +193,28 @@ export default {
             "Content-Type": "application/json",
           },
           body: JSON.stringify(data),
-        }
-      );
+        })
+        .then(response => response.json())
+        .then(result => {
+          if(result.success) {
+            this.isLoading = false
+            this.setCookie(TOKEN_CNAME, true, 30);
+            this.isMessaged = true;
+          }
+        }).catch(() => {this.isLoading = false});
 
-      let result = await response.json();
+        
 
-      if (result.success) {
-        this.setCookie(TOKEN_CNAME, true, 30);
-        this.isMessaged = true;
-      }
+      // let result = await response.json();
+
+      // if (result.success) {
+      //   this.setCookie(TOKEN_CNAME, true, 30);
+      //   this.isMessaged = true;
+      // }
+
+      // if(!result || !result.success) {
+      //   alert('failed')
+      // }
 
     },
     onChangeName($e) {
